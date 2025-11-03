@@ -1,8 +1,8 @@
-# TemporalSAEs
+# Temporal Feature Analysis
 
 Codebase for the paper "Priors in Time: Missing for Language Model Interpretability"
 
-This repository implements both standard Sparse Autoencoders (SAEs) and Temporal SAEs for language model interpretability. Temporal SAEs decompose language model activations into predictable (context-dependent) and novel (per-token) components using attention mechanisms.
+This repository implements both standard Sparse Autoencoders (SAEs) and Temporal Feature Analysis for language model interpretability. Temporal Feature Analysis decomposes language model activations into predictable (context-dependent) and novel (per-token) components using attention mechanisms.
 
 ## Table of Contents
 
@@ -54,7 +54,7 @@ python train_standard_saes.py --config-name=standard_conf
 python train_standard_saes.py --config-name=standard_conf_llama
 ```
 
-### 3. Train Temporal SAEs
+### 3. Train Temporal Feature Analysis
 
 ```bash
 # Train temporal SAE on Gemma-2-2B
@@ -82,9 +82,9 @@ Standard SAEs learn to reconstruct language model activations using various spar
 python train_standard_saes.py --config-name=standard_conf
 ```
 
-### Temporal SAEs
+### Temporal Feature Analysis
 
-Temporal SAEs decompose activations into:
+Temporal Feature Analysis decompose activations into:
 - **Predictable component**: Context-dependent, learned via attention
 - **Novel component**: Per-token differences, learned via standard SAE
 
@@ -136,7 +136,7 @@ Input Activations → [Predictable Path] → [Novel Path] → Combined Reconstru
 - `gamma_reg`: Regularization strength (default: 8 for ReLU, 10 for SpaDE)
 - `scaling_factor`: Input scaling (Gemma: 0.0067, Llama: 0.085)
 
-#### Temporal SAEs
+#### Temporal Feature Analysis
 - `sae_diff_type`: Type for novel component (`relu`, `topk`, `nullify`)
 - `n_heads`: Number of attention heads (default: 4)
 - `n_attn_layers`: Number of attention layers (default: 1)
@@ -191,14 +191,14 @@ temporalSAEs/
 ### Key Files
 
 - **`train_standard_saes.py`**: Main training script for standard SAEs
-- **`train_temporal_saes.py`**: Main training script for temporal SAEs
+- **`train_temporal_saes.py`**: Main training script for Temporal Feature Analysis
 - **`sae/saeStandard.py`**: Standard SAE implementations (ReLU, TopK, JumpReLU, etc.)
 - **`sae/saeTemporal.py`**: Temporal SAE with attention-based predictable component
 - **`precompute_llm_activations/run_precompute.py`**: Precompute activations from language models
 
 ## Pretrained Models
 
-Pretrained SAEs can be found at the following links. Note that contextual information that can enable predicted code to function well seems to be available primarily in middle / early layers, and hence we found later layer Temporal SAEs to not outperform standard SAEs. Nevertheless, to enable experimentation, we have released all SAEs trained in this work.
+Pretrained SAEs can be found at the following links. Note that contextual information that can enable predicted code to function well seems to be available primarily in middle / early layers, and hence we found later layer Temporal Feature Analysis to not outperform standard SAEs. Nevertheless, to enable experimentation, we have released all SAEs trained in this work.
 
 | Model | Layer | Type | Link |
 |-------|-------|------|------|
@@ -227,4 +227,4 @@ Create custom configs by modifying the YAML files in `config/sae_train/`. Key pa
 - **Model size**: Change `llm.dimin` and `sae.exp_factor`
 - **Sparsity**: Adjust `sae.kval_topk` and `sae.gamma_reg`
 - **Training**: Modify `data.num_total_steps` and `optimizer.learning_rate`
-- **Architecture**: Change `sae.n_heads` and `sae.n_attn_layers` for temporal SAEs
+- **Architecture**: Change `sae.n_heads` and `sae.n_attn_layers` for Temporal Feature Analysis
