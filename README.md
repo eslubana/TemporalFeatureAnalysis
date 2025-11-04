@@ -1,6 +1,6 @@
 # Temporal Feature Analysis
 
-Codebase for the paper "Priors in Time: Missing for Language Model Interpretability"
+Codebase for the paper [Priors in Time: Missing Inductive Biases for Language Model Interpretability](https://arxiv.org/abs/2511.01836)
 
 This repository implements both standard Sparse Autoencoders (SAEs) and Temporal Feature Analysis for language model interpretability. Temporal Feature Analysis decomposes language model activations into predictable (context-dependent) and novel (per-token) components using attention mechanisms.
 
