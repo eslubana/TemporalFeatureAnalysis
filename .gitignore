@@ -209,3 +209,4 @@ synthetic_stories/
 dynamics/
 precomputed_activations*
 notebooks/
+pretrained_sae/
