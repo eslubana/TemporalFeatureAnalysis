@@ -195,7 +195,6 @@ config/.DS_Store
 sae_results/
 results/
 figures/
-*.ipynb
 *.csv
 *.png
 *.jpg
