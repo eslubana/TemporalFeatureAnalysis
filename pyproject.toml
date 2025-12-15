@@ -1,0 +1,27 @@
+[project]
+name = "temporal-feature-analysis"
+version = "0.1.0"
+description = "Temporal SAE training and analysis for language models"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "hydra-core>=1.3.0",
+    "omegaconf>=2.3.0",
+    "wandb>=0.15.0",
+    "numpy>=1.24.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+    "safetensors>=0.4.0",
+    "datasets>=2.14.0",
+    "transformers>=4.30.0",
+    "sparsemax>=0.1.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sae", "utils", "precompute_llm_activations"]
+
